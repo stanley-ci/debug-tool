@@ -1,7 +1,9 @@
 
 const redis = require('ioredis');
 require('dotenv').config();
-const { REDIS_HOST, REDIS_PORT, getRedisIndustrCodyKey } = require('../config');
+
+const { REDIS_HOST, REDIS_PORT, REDIS_TRANS_TOKEN_KEY } = process.env;
+
 
 const redisCli = new redis.Cluster(
     [
@@ -68,7 +70,7 @@ function keys() {
     });
 
 
-    redisCli.lrange(REDIS_TOKEN_KEY, 0, -1, (err, data) => {
+    redisCli.lrange(REDIS_TRANS_TOKEN_KEY, 0, -1, (err, data) => {
         if (err || data.length < 3) {
             console.error({ title: 'redis token get error:', err, data });
             return;
