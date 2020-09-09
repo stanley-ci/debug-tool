@@ -69,8 +69,10 @@ function keys() {
 
 
     redisCli.lrange(REDIS_TRANS_TOKEN_KEY, 0, -1, (err, data) => {
-        if (err || data.length < 3) {
+        if (err) {
             console.error({ title: 'redis token get error:', err, data });
+            return;
+        } else if (data.length < 3) {
             return;
         }
 
