@@ -92,6 +92,6 @@ function clearRedis() {
             return;
         }
 
-        console.log('keys PAY*');
+        console.log('清除access token成功');
     });
 }
