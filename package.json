@@ -1,0 +1,16 @@
+{
+  "name": "redis-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "redis_clr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ioredis": "^4.17.3"
+  }
+}
