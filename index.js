@@ -43,8 +43,6 @@ redisCli.on('connect', function () {
     });
 });
 
-
-
 function command() {
     const cmd = process.argv[2];
     console.log("您输入的命令:", cmd);
@@ -53,7 +51,7 @@ function command() {
     } else if (cmd === 'clear') {
         clearRedis();
     }
-
+    process.exit(0);
 }
 
 function keys() {
@@ -66,7 +64,7 @@ function keys() {
             console.error(err);
             return;
         }
-        console.log('keys PAY*', JSON.stringify(data, null, 4));
+        console.log('keys PAY*', data);
     });
 
 
@@ -76,9 +74,9 @@ function keys() {
             return;
         }
 
-        const [expires_in, created, desc] = data;
+        const [, expires_in, created, desc] = data;
         const isExpired = Date.now() / 1000 - created > expires_in - 60;
-        console.log({ title: 'redis token', isExpired, expires_in, created, desc })
+        console.log({ title: 'access token', isExpired, expires_in, created, desc })
     });
 
 }
@@ -88,7 +86,7 @@ function clearRedis() {
         console.error('redis disconnectied!');
         return false;
     }
-    redisCli.keys('PAY*', (err, data) => {
+    redisCli.del(REDIS_TRANS_TOKEN_KEY, (err, data) => {
         if (err) {
             console.error(err);
             return;
