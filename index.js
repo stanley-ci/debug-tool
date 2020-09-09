@@ -78,7 +78,7 @@ function keys() {
 
         const [, expires_in, created, desc] = data;
         const isExpired = Date.now() / 1000 - created > expires_in - 60;
-        console.log({ title: 'access token', isExpired, expires_in, created, desc })
+        console.log({ key: REDIS_TRANS_TOKEN_KEY, isExpired, expires_in, created, desc })
     });
 
 }
