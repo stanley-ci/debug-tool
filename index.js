@@ -51,7 +51,7 @@ function command() {
     } else if (cmd === 'clear') {
         clearRedis();
     }
-    setTimeout(() => process.exit(0), 2000)
+    setTimeout(() => process.exit(0), 1000)
 }
 
 function keys() {
